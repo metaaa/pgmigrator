@@ -1,6 +1,8 @@
 # **Overview**
 
-Migrate Tool is a Node.js CLI tool for executing database migrations using the pg library as the database driver. The tool allows you to execute forward and backward migrations in a specified order based on the filename (datetime prefix). Separate migrations can be run once, and if they succeed, they will be recorded in the database in the pre-defined table.
+Migrate Tool is a Node.js CLI tool for executing database migrations using the pg library as the database driver. The tool allows you to execute forward and backward migrations in a specified order based on the filename (datetime prefix). 
+
+Separate migrations can be run once, and if they succeed, they will be recorded in the database in the pre-defined table.
 
 # **Installation & configuration**
 
@@ -55,17 +57,25 @@ module.exports = {
 
 ### **Commands**
 
+**`npm exec migrator create <name>`**
+
 **`npx migrator create <name>`**
 
 - Create a migration file with the basic template. The given name will be prefixed with the current datetime in a format: `202305131530876-[name_simplified].[ext]`
+
+**`npm exec migrator run`**
 
 **`npx migrator run`**
 
 - Run all migrations which are not yet executed migrations
 
+**`npm exec migrator status`**
+
 **`npx migrator status`**
 
 - Displays the state of successfully executed and not yet executed migrations
+
+**`npm exec migrator rollback <count>`**
 
 **`npx migrator rollback <count>`**
 

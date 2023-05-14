@@ -1,7 +1,12 @@
 {
   "name": "@metaaa/pgmigrator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A database migration tool using TypeScript and PostgreSQL (with pg driver)",
+  "homepage": "https://github.com/metaaa/pgmigrator",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:metaaa/pgmigrator.git"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
