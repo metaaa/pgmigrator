@@ -1,0 +1,35 @@
+{
+  "name": "@metaaa/pgmigrator",
+  "version": "0.2.0",
+  "description": "A database migration tool using TypeScript and PostgreSQL (with pg driver)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "migrator": "dist/bin/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^10.0.1",
+    "pg": "^8.10.0"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/pg": "^8.6.6",
+    "typescript": "^5.0.4"
+  },
+  "keywords": [
+    "database",
+    "migration",
+    "typescript",
+    "pg",
+    "postgresql"
+  ],
+  "author": "MartonBalogh",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
