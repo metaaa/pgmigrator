@@ -4,11 +4,11 @@ Migrate Tool is a Node.js CLI tool for executing database migrations using the p
 
 # **Installation & configuration**
 
-1. Install via CLI: `npm install @metaaa/pgmigrate` or `yarn add @metaaa/pgmigrator`
+1. Install via CLI: **`npm install @metaaa/pgmigrate`** or **`yarn add @metaaa/pgmigrator`**
 
-2. Create `migrator.config.js` inside the root of your project
+2. Create **`migrator.config.js`** inside the root of your project
 
-3. Configure the migrator with the `migrator.config.js` file
+3. Configure the migrator with the **`migrator.config.js`** file
 
 
 ### **Configuration**
@@ -55,19 +55,19 @@ module.exports = {
 
 ### **Commands**
 
-`npx migrator create <name>`
+**`npx migrator create <name>`**
 
 - Create a migration file with the basic template. The given name will be prefixed with the current datetime in a format: `202305131530876-[name_simplified].[ext]`
 
-`npx migrator run`
+**`npx migrator run`**
 
 - Run all migrations which are not yet executed migrations
 
-`npx migrator status`
+**`npx migrator status`**
 
 - Displays the state of successfully executed and not yet executed migrations
 
-`npx migrator rollback <count>`
+**`npx migrator rollback <count>`**
 
 - Rolls back the **last N** migrations by calling the migration file's `down` function.
 
