@@ -15,7 +15,7 @@ export const createMigrationByName = async (name: string) => {
     const fileName = `${dateTime}-${name
       .toLocaleLowerCase()
       .replace(/[^a-z0-9]/g, "_")}${config.fileSystem.extension || ".ts"}`;
-    const outputDir = resolve(config.fileSystem.migrationsDir);
+    const outputDir = resolve(config.fileSystem.outputDir);
     const filePath = resolve(outputDir, fileName);
 
     if (!existsSync(outputDir)) {

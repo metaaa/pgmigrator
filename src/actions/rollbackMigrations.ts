@@ -3,6 +3,7 @@ import {
   getConfig,
   loadMigrationsFromDbForRollback,
   loadMigrationsFromFs,
+  rollbackMigration,
 } from "../utils";
 import { DatabaseMigration, FileSystemMigration } from "../customTypes";
 
@@ -43,11 +44,18 @@ export const rollbackMigrationsByCount = async (
       try {
         await client.query("BEGIN");
         await client.query(migration.actions.down());
+        await rollbackMigration({
+          client,
+          tableName: config.database.tableName,
+          migrationName: migration.name,
+        });
         await client.query("COMMIT");
         console.log(`[SUCCESS] Migration rolled back: ${migration.name}.`);
       } catch (error) {
         await client.query("ROLLBACK");
-        console.error(`[ERROR] Failed to execute migration roll back: ${migration.name}.`);
+        console.error(
+          `[ERROR] Failed to execute migration roll back: ${migration.name}.`
+        );
         console.error(error);
         break;
       }

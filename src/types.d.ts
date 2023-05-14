@@ -1,5 +1,5 @@
 import { MigrationConfig as Config } from "./customTypes";
 
-declare module "pgmigrator" {
+declare module "@metaaa/pgmigrator" {
   export type MigrationConfig = Config;
 }

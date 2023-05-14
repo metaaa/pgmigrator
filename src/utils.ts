@@ -15,7 +15,6 @@ export type MigratorParams = {
 };
 
 export const RESULT_TYPE_SUCCESS = "SUCCESS";
-export const RESULT_TYPE_FAILED = "FAILED";
 
 /**
  * Checks to existence of the config file and grant type-safety usage

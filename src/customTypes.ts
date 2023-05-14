@@ -7,6 +7,7 @@ export type MigrationConfig = {
   };
   fileSystem: {
     migrationsDir: string;
+    outputDir: string;
     extension: string;
   };
 };
