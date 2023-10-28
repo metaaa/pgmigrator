@@ -21,7 +21,7 @@ export const RESULT_TYPE_SUCCESS = "SUCCESS";
  */
 export const getConfig = (): MigrationConfig => {
   try {
-    return require(resolve("./migrator.config.js"));
+    return require(resolve("../../../../migrator.config.js"));
   } catch (error) {
     console.error(MISSING_CONFIG_ERROR);
     process.exit(0);
