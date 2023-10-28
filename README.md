@@ -1,3 +1,6 @@
+## This version is still in development as I still have to cover everything with tests. Will do it in the next 2 weekends to reach the stable version.
+
+
 # **Overview**
 
 Migrate Tool is a Node.js CLI tool for executing database migrations using the pg library as the database driver. The tool allows you to execute forward and backward migrations in a specified order based on the filename (datetime prefix). 
