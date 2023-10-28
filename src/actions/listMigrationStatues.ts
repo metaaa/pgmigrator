@@ -6,6 +6,7 @@ import {
   gracefullyExit,
   loadMigrationsFromDb,
   loadMigrationsFromFs,
+  setupIfNeeded,
 } from "../utils";
 
 export const listMigrationStatuses = async (): Promise<void> => {
@@ -19,6 +20,8 @@ export const listMigrationStatuses = async (): Promise<void> => {
   };
 
   try {
+    await setupIfNeeded(params)
+
     const migrationsFromDB = await loadMigrationsFromDb(params);
     const migrationsFromFiles = await loadMigrationsFromFs(
       config.fileSystem.migrationsDir
