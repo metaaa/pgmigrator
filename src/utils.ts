@@ -34,7 +34,7 @@ export const getConfig = (): MigrationConfig => {
 export const setupIfNeeded = async (
   params: Omit<MigratorParams, "migrationName">
 ) => {
-  await params.client.query(`CREATE TABLE ${params.tableName} (
+  await params.client.query(`CREATE TABLE IF NOT EXISTS ${params.tableName} (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()

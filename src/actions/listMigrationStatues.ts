@@ -20,7 +20,7 @@ export const listMigrationStatuses = async (): Promise<void> => {
   };
 
   try {
-    await setupIfNeeded(params)
+    await setupIfNeeded(params);
 
     const migrationsFromDB = await loadMigrationsFromDb(params);
     const migrationsFromFiles = await loadMigrationsFromFs(
