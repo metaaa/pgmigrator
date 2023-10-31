@@ -5,8 +5,8 @@ import {
   DatabaseMigration,
   FileSystemMigration,
   MigrationConfig,
-} from "./customTypes";
-import { MISSING_CONFIG_ERROR } from "./templates";
+} from "./customTypes.js";
+import { MISSING_CONFIG_ERROR } from "./templates.js";
 
 export type MigratorParams = {
   client: PoolClient;
@@ -19,10 +19,12 @@ export const RESULT_TYPE_SUCCESS = "SUCCESS";
 /**
  * Checks to existence of the config file and grant type-safety usage
  */
-export const getConfig = (): MigrationConfig => {
+export const getConfig = async (): Promise<MigrationConfig> => {
   try {
-    return require(resolve("../../../../migrator.config.js"));
+    const configFile = await import(resolve("./migrator.config.js"));
+    return configFile.default;
   } catch (error) {
+    console.error(error)
     console.error(MISSING_CONFIG_ERROR);
     process.exit(0);
   }
@@ -91,7 +93,8 @@ export const loadMigrationsFromFs = async (
       .sort()
       .map(async (file) => {
         const filePath = resolve(fsPath, file);
-        return { name: file, actions: require(filePath) };
+        const importedFile = await import(filePath);
+        return { name: file, actions:  importedFile.default};
       })
   );
 };

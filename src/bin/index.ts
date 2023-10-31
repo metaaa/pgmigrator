@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import { createMigrationByName } from "../actions/createMigration";
-import { listMigrationStatuses } from "../actions/listMigrationStatues";
-import { runMigrations } from "../actions/runMigrations";
-import { rollbackMigrationsByCount } from "../actions/rollbackMigrations";
+import { createMigrationByName } from "../actions/createMigration.js";
+import { listMigrationStatuses } from "../actions/listMigrationStatues.js";
+import { runMigrations } from "../actions/runMigrations.js";
+import { rollbackMigrationsByCount } from "../actions/rollbackMigrations.js";
 
 const program = new Command();
 

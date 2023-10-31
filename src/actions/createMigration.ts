@@ -1,13 +1,13 @@
 import { existsSync, promises } from "fs";
 import { resolve } from "path";
-import { migrationFileContent } from "../templates";
-import { getConfig, wrapTextWithAsterisk } from "../utils";
+import { migrationFileContent } from "../templates.js";
+import { getConfig, wrapTextWithAsterisk } from "../utils.js";
 
 /**
  * Creates a single migration file with the provided file name prefixed with the current datetime
  */
 export const createMigrationByName = async (name: string) => {
-  const config = getConfig();
+  const config = await getConfig();
   console.log(`\nCreating migration...\n`);
 
   try {
@@ -27,7 +27,7 @@ export const createMigrationByName = async (name: string) => {
     await promises.writeFile(filePath, migrationFileContent);
     console.log(`\n[SUCCESS] Migration file has been created at ${filePath}`);
     process.exit(0);
-  } catch (err) {
+  } catch (err: any) {
     console.error("\n[ERROR] ", err.message);
     process.exit(0);
   }

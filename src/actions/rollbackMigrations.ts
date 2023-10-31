@@ -1,16 +1,18 @@
-import { Pool } from "pg";
+import pg from "pg";
 import {
   getConfig,
   loadMigrationsFromDbForRollback,
   loadMigrationsFromFs,
   rollbackMigration,
-} from "../utils";
-import { DatabaseMigration, FileSystemMigration } from "../customTypes";
+} from "../utils.js";
+import { DatabaseMigration, FileSystemMigration } from "../customTypes.js";
+
+const { Pool } = pg;
 
 export const rollbackMigrationsByCount = async (
   count: string
 ): Promise<void> => {
-  const config = getConfig();
+  const config = await getConfig();
   const pool = new Pool(config.config);
   const client = await pool.connect();
 
@@ -42,17 +44,14 @@ export const rollbackMigrationsByCount = async (
 
     for (const migration of fsMigrationsToRollback) {
       try {
-        await client.query("BEGIN");
-        await client.query(migration.actions.down());
+        await migration.actions.down();
         await rollbackMigration({
           client,
           tableName: config.database.tableName,
           migrationName: migration.name,
         });
-        await client.query("COMMIT");
         console.log(`[SUCCESS] Migration rolled back: ${migration.name}.`);
       } catch (error) {
-        await client.query("ROLLBACK");
         console.error(
           `[ERROR] Failed to execute migration roll back: ${migration.name}.`
         );

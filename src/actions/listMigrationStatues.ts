@@ -1,5 +1,5 @@
-import { Pool } from "pg";
-import { DatabaseMigration, FileSystemMigration } from "../customTypes";
+import pg from "pg";
+import { DatabaseMigration, FileSystemMigration } from "../customTypes.js";
 import {
   RESULT_TYPE_SUCCESS,
   getConfig,
@@ -7,10 +7,13 @@ import {
   loadMigrationsFromDb,
   loadMigrationsFromFs,
   setupIfNeeded,
-} from "../utils";
+} from "../utils.js";
+
+const { Pool } = pg;
 
 export const listMigrationStatuses = async (): Promise<void> => {
-  const config = getConfig();
+  const config = await getConfig();
+
   const pool = new Pool(config.config);
   const client = await pool.connect();
 
@@ -55,7 +58,7 @@ export const listMigrationStatuses = async (): Promise<void> => {
     }
 
     gracefullyExit(client);
-  } catch (error) {
+  } catch (error: any) {
     console.error("[ERROR] ", error.message);
   }
 };
