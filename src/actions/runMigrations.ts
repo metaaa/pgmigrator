@@ -19,7 +19,7 @@ export async function runMigrations(): Promise<void> {
       const params = {
         client,
         tableName: config.database.tableName,
-        migrationName: migration.name,
+        migrationName: migration.name.split('.')[0],
       };
 
       const alreadyRun = await hasMigrationRun(params);

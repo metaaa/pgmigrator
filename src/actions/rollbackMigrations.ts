@@ -48,7 +48,7 @@ export const rollbackMigrationsByCount = async (
         await rollbackMigration({
           client,
           tableName: config.database.tableName,
-          migrationName: migration.name,
+          migrationName: migration.name.split(".")[0],
         });
         console.log(`[SUCCESS] Migration rolled back: ${migration.name}.`);
       } catch (error) {
