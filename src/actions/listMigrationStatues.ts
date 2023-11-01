@@ -56,9 +56,9 @@ export const listMigrationStatuses = async (): Promise<void> => {
 
       console.log(`| ${fsMigration.padEnd(80)} | ${"".padEnd(7)} |`);
     }
-
-    gracefullyExit(client);
   } catch (error: any) {
     console.error("[ERROR] ", error.message);
+  } finally {
+    gracefullyExit(client);
   }
 };

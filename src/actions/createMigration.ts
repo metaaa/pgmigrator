@@ -26,9 +26,9 @@ export const createMigrationByName = async (name: string) => {
 
     await promises.writeFile(filePath, migrationFileContent);
     console.log(`\n[SUCCESS] Migration file has been created at ${filePath}`);
-    process.exit(0);
   } catch (err: any) {
     console.error("\n[ERROR] ", err.message);
+  } finally {
     process.exit(0);
   }
 };

@@ -1,6 +1,7 @@
 import pg from "pg";
 import {
   getConfig,
+  gracefullyExit,
   loadMigrationsFromDbForRollback,
   loadMigrationsFromFs,
   rollbackMigration,
@@ -62,7 +63,7 @@ export const rollbackMigrationsByCount = async (
   } catch (error) {
     console.error("[ERROR]", error);
   } finally {
-    client.release();
     await pool.end();
+    gracefullyExit(client);
   }
 };

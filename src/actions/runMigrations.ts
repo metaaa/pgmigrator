@@ -1,5 +1,5 @@
 import pg from "pg";
-import { getConfig, hasMigrationRun, loadMigrationsFromFs, markMigrationAsRun, setupIfNeeded } from "../utils.js";
+import { getConfig, gracefullyExit, hasMigrationRun, loadMigrationsFromFs, markMigrationAsRun, setupIfNeeded } from "../utils.js";
 
 const { Pool } = pg;
 
@@ -41,7 +41,7 @@ export async function runMigrations(): Promise<void> {
   } catch (error) {
     console.error("[ERROR]", error);
   } finally {
-    client.release();
     await pool.end();
+    gracefullyExit(client)
   }
 }
